@@ -1,0 +1,21 @@
+//缩小头部用户的span
+@media all and (max-width:900px) {
+  .page .header .top #box .mean
+  {
+    margin: 0 -100%;
+    width:200%;
+    height:200%;
+  }
+  .page .header .top #box .mean span
+  {
+    line-height: 0.6rem;
+    visibility: visible;
+  }
+}
+@media (max-width:470px){
+  .page .header .top .nav-content span{
+    visibility:hidden;
+    display: none;
+  /*  transform: scale(0.5);*/
+  }
+}

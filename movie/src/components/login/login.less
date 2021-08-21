@@ -1,0 +1,96 @@
+@center-size:6rem;
+//适配ipad pro
+@media all and (min-width:1024px)and (min-height:1366px) and (orientation:portrait){
+  .loginPage #foot .footbox{
+    width: 50%;
+    height: 50%;
+    font-size: 0.3rem;
+    //transform: scale(1.5);
+    ul li{
+      height: 1rem;
+      &:nth-child(1){
+        font-size: 0.4rem;
+        height: 1rem;
+      }
+    }
+  }
+}
+//去除滚动条
+@media all and (min-height:750px){
+   .loginPage{
+     overflow: hidden;
+   }
+}
+////当屏幕宽度小于750px时
+//@media all and (max-height:750px){
+//  .loginPage{
+//    overflow-y: scroll;
+//  }
+//}
+//当屏幕宽度小于720px时
+@media all and (max-width:720px){
+  .loginPage #center{
+    @center-size:8rem;
+     height:@center-size;
+  }
+  .loginPage #center #log-sig{
+    left:50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  .loginPage #foot{
+    @center-size:8rem;
+    height:calc(~'100vh - @{center-size} - 1.5rem');
+  }
+  //提示文字缩小
+  .loginPage #center #log-sig .Sign .tips{
+    padding: 0rem;
+    transform: scale(0.7);
+  }
+  //验证码模块中文字缩小
+  .loginPage #center #log-sig .Sign .Code .codetext{
+    width: 1.0rem;
+  }
+  //验证码中输入框缩小
+  .loginPage #center #log-sig .Sign .Code .codeipt{
+    width: 1.4rem;
+  }
+  //验证码中随机数盒子缩小
+  .loginPage #center #log-sig .Sign .Code .RandomCode{
+    letter-spacing: 0px;
+  }
+  //foot中的li缩小
+  .loginPage #foot .footbox ul li{
+     &:nth-child(2),&:nth-child(3),&:nth-child(4){
+       transform: scale(0.7);
+     }
+  }
+}
+//当屏幕小于420px时
+@media all and (max-width:420px){
+  .loginPage #foot .footbox{
+    width: 50%;
+    height: 50%;
+    //transform: scale(1.5);
+  }
+}
+//当屏幕宽度小于400px时
+@media all and (max-width:400px){
+  //提示文字缩小
+  .loginPage #center #log-sig .Sign .tips{
+    width:5rem;
+  }
+  //验证码模块中文字缩小
+  .loginPage #center #log-sig .Sign .Code .codetext{
+    width: 1.25rem;
+    transform: scale(0.6);
+  }
+  //验证码中输入库缩小
+  .loginPage #center #log-sig .Sign .Code .codeipt{
+    width: 1.4rem;
+  }
+  //验证码中随机数缩小
+  .loginPage #center #log-sig .Sign .Code .RandomCode{
+    letter-spacing: -2px;
+    transform: scale(0.8);
+  }
+}
