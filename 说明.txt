@@ -2,3 +2,5 @@ movie是前端的代码
 resource是用来存放图片资源的
 server是后端，用来向数据库发送数据和给前端返回数据的
 数据库文件再mysql-file中
+
+movie 和 resource只需要在文件中先 npm init -y，然后npm install即可
