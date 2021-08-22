@@ -63,28 +63,57 @@ router.get('/sign',(req,res)=>{
     let sign = signinfo.signuser;
     let allinfo = {username:signinfo.signuser,password: signinfo.signpow};
     let sql_sign = SQL.user.select + " where username = '"+ sign + "'";
+    let sql_insert =SQL.user.insert + `('${allinfo.username}','${allinfo.password}')`;
+    let sql_create ="CREATE TABLE IF NOT EXISTS " + `${allinfo.username}` + "(`name` VARCHAR(255),`id` INT(255) NOT NULL,`hotstatus` VARCHAR(255),PRIMARY KEY ( `id` ))ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+    //创建表格
+    var create = new Promise((resolve, reject) => {
+        resolve();
+    });
+    //添加数据
+    var insert = new Promise((resolve, reject) => {
+        resolve();
+    });
+    //查询数据
     var query = new Promise(function (resolve, reject) {
+        //查找数据库中是否已有相同的用户名了
         conn.query(sql_sign,sign,(error,result)=>{
-            var data = "";
-            if (result == 0){
+            console.log(result);
+            if (result.length === 0){
+                //没有相同数据
                 resolve(allinfo);
             }
             else{
-                reject();
+                //有相同数据执行
+                var  data = fname + '({state:0})';
+                res.send(data)
             }
         });
     });
     query.then(function (data) {
-        let sql_sign =SQL.user.insert + `('${data.username}','${data.password}')`;
-        console.log(sql_sign);
-        conn.query(sql_sign,sign,(error,result)=>{
-           var  data = fname + '({state:1})';
-            res.send(data)
-
+        return insert
+    }).then(function () {
+        conn.query(sql_insert,sign,(error,result)=>{
+            if(error){
+                var  data = fname + '({state:0})';
+                res.send(data)
+            }
+            else{
+                return create
+            }
         });
-    },function(){
-        var  data = fname + '({state:0})';
-        res.send(data)
+    }).then(function () {
+        console.log(sql_create);
+        conn.query(sql_create,sign,(error,result)=>{
+            console.log(result);
+            if(error){
+                var  data = fname + '({state:0})';
+                res.send(data)
+            }
+            else{
+                data = fname + '({state:1})';
+                res.send(data)
+            }
+        });
     })
 });
 router.get('/home',(req,res) =>{
