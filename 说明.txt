@@ -4,3 +4,5 @@ server是后端，用来向数据库发送数据和给前端返回数据的
 数据库文件再mysql-file中
 
 movie 和 resource只需要在文件中先 npm init -y，然后npm install即可
+运行时npm run serve
+server运行时使用nodemon app 或者 node app，我的电脑全局安装了nodemon所以可以使用。
